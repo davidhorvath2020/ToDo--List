@@ -1,0 +1,158 @@
+html,
+body {
+  margin: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.DarkModeButton {
+  border: none;
+  border-radius: 40px;
+  height: 40px;
+}
+
+.AddItemsButton,
+.DeleteAllButton {
+  cursor: pointer;
+  background-color: #565555;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.AddItemsButton:hover,
+.DeleteAllButton:hover {
+  animation-name: Shining;
+  animation-duration: 0.5s;
+}
+
+@keyframes Shining {
+  0% {
+    background-color: #565555;
+  }
+
+  50% {
+    background-color: rgb(54, 255, 47)
+  }
+
+  100% {
+    background-color: #565555;
+  }
+}
+
+.DarkModeButton {
+  cursor: pointer;
+}
+
+.App {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(140, 139, 139, 1) 50%, rgba(255, 255, 255, 1) 100%);
+  min-height: fit-content;
+}
+
+.Dark {
+  background: rgb(103, 103, 103);
+  background: linear-gradient(90deg, rgba(103, 103, 103, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(103, 103, 103, 1) 100%);
+  color: white;
+  min-height: 100vh;
+}
+
+.Todo--Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.AddItems--Button-Counter {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.AddedTodo--Container {
+  max-height: min-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px 50px 0px 50px;
+  flex-wrap: wrap;
+}
+
+
+
+.TaskDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+  border: 3px transparent solid;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(121, 197, 71);
+}
+
+.TaskDiv:hover {
+  border: 3px blue solid;
+}
+
+.delete-button {
+  background-color: transparent;
+  border: none;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+}
+
+.Incorrectinput {
+  animation-name: Redding;
+  animation-duration: 3s;
+  border: 5px solid red;
+  animation: shake 0.2s ease-in-out 0s 2;
+  box-shadow: 0 0 2em red;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+
+@keyframes Redding {
+  0% {
+    border: 5px solid rgb(7, 7, 7);
+  }
+
+  100% {
+    border: 5px solid red;
+  }
+}
+
+@keyframes shake {
+  0% {
+    margin-left: 0rem;
+  }
+
+  25% {
+    margin-left: 0.5rem;
+  }
+
+  75% {
+    margin-left: -0.5rem;
+  }
+
+  100% {
+    margin-left: 0rem;
+  }
+}
+
+.CorrectInput {
+  border: 5px solid transparent;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.Title--Container{
+  display: flex;
+  flex-direction: row;
+}
+
+h2{
+  padding: 0px 10px 0px 10px;
+}
