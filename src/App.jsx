@@ -24,6 +24,7 @@ function App() {
   function addItem(/*item*/) {
     if (!newItem || !newTitle) {
       setStyle("Incorrectinput");
+      alert('You have to give a title and a short description!')
       return;
     }
 
@@ -82,7 +83,7 @@ function App() {
         />
         <input
           type="text"
-          placeholder="Add an items..."
+          placeholder="Add description"
           value={newItem}
           onChange={(e) => { setNewItem(e.target.value); setStyle("CorrectInput") }}
           className={style}
@@ -91,17 +92,30 @@ function App() {
           type="text"
           placeholder="Search"
           onChange={(e) => setSearch(e.target.value)}
-          className={style}
+          className='SearchInput'
         />
-        <input type='checkbox'
-          onChange={(e) => setUnDoneSearch(e.target.checked)}
-        /><label>csak a bejefezetlen feladatokat mutasd</label>
-        <div className='AddItems--Button-Counter'>
-          <button onClick={() => addItem()} className="AddItemsButton">Add</button>
-          <button onClick={deleteAll} className='DeleteAllButton'>Delte all</button>
-          <br />
-          <span>You have {items.length} task to do</span>
+        <div className='ShowUndone--Container'>
+          <input type='checkbox'
+            onChange={(e) => setUnDoneSearch(e.target.checked)}
+          />
+          <label>
+            csak a bejefezetlen feladatokat mutasd
+          </label>
         </div>
+        <div className='AddItems--Button-Counter'>
+          <button
+            onClick={() => addItem()}
+            className={darkMode ? "AddItemsButton" : "AddItemsButton--dark"} >
+            <h4>Add</h4>
+          </button>
+          <button
+            onClick={deleteAll}
+            className={darkMode ? "DeleteAllButton" : "DeleteAllButton--dark"}>
+            <h4>Delte all</h4>
+          </button>
+          <br />
+        </div>
+        <span>You have {items.length} task to do</span>
       </div>
 
       {/*******************ADDED SECTION *******************/}
@@ -113,7 +127,7 @@ function App() {
           .filter((x) => x.checkedItem !== unDoneSearch || !x.checkedItem)
           .map((x) => {
             return (
-              <div className='TaskDiv' key={x.id} >
+              <div className={darkMode ? 'TaskDiv' : 'TaskDiv--Dark'} key={x.id} >
                 <div className='Title--Container'>
                   <label className="checkbox-btn">
                     <label type="checkbox"></label>
@@ -123,7 +137,7 @@ function App() {
                       onChange={(event) => handleCheck(event, x.id)}
                       defaultChecked={x.checkedItem}
                     />
-                    <span className="checkmark"></span>
+                    <span className={darkMode ? "checkmark" : 'checkmark--dark'}></span>
                   </label>
                   <h2>{x.title}</h2>
                   <button

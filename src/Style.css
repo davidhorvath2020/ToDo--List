@@ -17,30 +17,35 @@ body {
 .AddItemsButton,
 .DeleteAllButton {
   cursor: pointer;
-  background-color: #565555;
+  background-color: gray;
   border: none;
   border-radius: 5px;
-  margin: 5px;
+  margin: 5px 10px 5px 10px;
+  box-shadow: 2px 3px 10px gray;
+  padding: 0px 20px 0px 20px;
+  transition: 0.2s;
 }
 
 .AddItemsButton:hover,
-.DeleteAllButton:hover {
-  animation-name: Shining;
-  animation-duration: 0.5s;
+.DeleteAllButton:hover{
+  scale: 1.1;
 }
 
-@keyframes Shining {
-  0% {
-    background-color: #565555;
-  }
+.AddItemsButton--dark,
+.DeleteAllButton--dark {
+  cursor: pointer;
+  background-color: #565555;
+  border: none;
+  border-radius: 5px;
+  margin: 5px 10px 5px 10px;
+  box-shadow: 2px 3px 10px gray;
+  padding: 0px 20px 0px 20px;
+  transition: 0.2s;
+}
 
-  50% {
-    background-color: rgb(54, 255, 47)
-  }
-
-  100% {
-    background-color: #565555;
-  }
+.AddItemsButton--dark:hover,
+.DeleteAllButton--dark:hover{
+  scale: 1.1;
 }
 
 .DarkModeButton {
@@ -48,7 +53,7 @@ body {
 }
 
 .App {
-  background: rgb(255, 255, 255);
+  background: #f0f0f0;
   /* background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(140, 139, 139, 1) 50%, rgba(255, 255, 255, 1) 100%); */
   min-height: 100vh;
 }
@@ -68,7 +73,7 @@ body {
 
 .AddItems--Button-Counter {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 10px;
 }
 
@@ -91,20 +96,37 @@ body {
   border: 3px transparent solid;
   border-radius: 5px;
   padding: 5px;
+  background-color: white;
+  box-shadow: 2px 3px 10px gray;
+  transition: 0.2s;
+}
+
+.TaskDiv--Dark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px;
+  border: 3px transparent solid;
+  border-radius: 5px;
+  padding: 5px;
   background-color: #565555;
+  box-shadow: 2px 3px 10px gray;
+  transition: 0.2s;
 }
 
-.TaskDiv:hover {
-  border: 3px blue solid;
+.TaskDiv:hover,
+.TaskDiv--Dark:hover{
+  border: 3px #0ea021 solid;
+  scale: 1.1;
 }
 
-h2{
+h2 {
   padding: 0px 10px 0px 10px;
   margin: 0;
   font-size: 1.9em;
 }
 
-label{
+label {
   margin-top: 3px;
 }
 
@@ -127,47 +149,23 @@ label{
   border-radius: 5px;
 }
 
-
-@keyframes Redding {
-  0% {
-    border: 5px solid rgb(7, 7, 7);
-  }
-
-  100% {
-    border: 5px solid red;
-  }
-}
-
-@keyframes shake {
-  0% {
-    margin-left: 0rem;
-  }
-
-  25% {
-    margin-left: 0.5rem;
-  }
-
-  75% {
-    margin-left: -0.5rem;
-  }
-
-  100% {
-    margin-left: 0rem;
-  }
-}
-
-.CorrectInput {
+.CorrectInput,
+.SearchInput {
   border: 5px solid transparent;
   margin-bottom: 10px;
   border-radius: 5px;
+  box-shadow: 2px 3px 10px gray;
 }
 
-.Title--Container{
+.Title--Container {
   display: flex;
   flex-direction: row;
 }
 
-
+.ShowUndone--Container {
+  display: flex;
+  flex-direction: row;
+}
 
 /*********************DarkModeButton**************************/
 .switch {
@@ -179,8 +177,8 @@ label{
   margin: 10px 0 0 10px;
 }
 
-.switch:hover{
-  cursor: pointer;  
+.switch:hover {
+  cursor: pointer;
 }
 
 .switch input {
@@ -233,12 +231,13 @@ label{
   height: 24px;
 }
 
-/* .switch:hover */.sun svg {
+/* .switch:hover */
+.sun svg {
   animation: rotate 15s linear infinite;
 }
 
 @keyframes rotate {
- 
+
   0% {
     transform: rotate(0);
   }
@@ -248,12 +247,13 @@ label{
   }
 }
 
-/* .switch:hover */.moon svg {
+/* .switch:hover */
+.moon svg {
   animation: tilt 5s linear infinite;
 }
 
 @keyframes tilt {
- 
+
   0% {
     transform: rotate(0deg);
   }
@@ -271,15 +271,15 @@ label{
   }
 }
 
-.input:checked + .slider {
+.input:checked+.slider {
   background-color: #183153;
 }
 
-.input:focus + .slider {
+.input:focus+.slider {
   box-shadow: 0 0 1px #183153;
 }
 
-.input:checked + .slider:before {
+.input:checked+.slider:before {
   transform: translateX(30px);
 }
 
@@ -312,8 +312,19 @@ label{
   cursor: pointer;
   font-size: 14px;
 }
+
 /* Create a custom checkbox */
 .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border: 2.5px solid black;
+  transition: .2s linear;
+}
+
+.checkmark--dark {
   position: absolute;
   top: 0;
   left: 0;
@@ -322,12 +333,15 @@ label{
   border: 2.5px solid #ffffff;
   transition: .2s linear;
 }
-.checkbox-btn input:checked ~ .checkmark {
+
+.checkbox-btn input:checked~.checkmark,
+.checkbox-btn input:checked~.checkmark--dark {
   background-color: transparent;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
+.checkmark:after,
+.checkmark--dark:after {
   content: "";
   position: absolute;
   visibility: hidden;
@@ -344,25 +358,28 @@ label{
 }
 
 /* Show the checkmark when checked */
-.checkbox-btn input:checked ~ .checkmark:after {
+.checkbox-btn input:checked~.checkmark:after,
+.checkbox-btn input:checked~.checkmark--dark:after {
   visibility: visible;
   opacity: 1;
   transform: translate(-50%, -50%) rotate(0deg) scale(1);
   animation: pulse 1s ease-in;
 }
 
-.checkbox-btn input:checked ~ .checkmark {
+.checkbox-btn input:checked~.checkmark,
+.checkbox-btn input:checked~.checkmark--dark {
   transform: rotate(45deg);
   border: none;
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     transform: translate(-50%, -50%) rotate(0deg) scale(1);
   }
+
   50% {
     transform: translate(-50%, -50%) rotate(0deg) scale(1.6);
   }
 }
-
